@@ -1,0 +1,266 @@
+<!-- INCLUDE overall_header.html -->
+
+<div style="width: 22%; float: {S_CONTENT_FLOW_BEGIN};">
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_BOARD_NAVIGATION}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<li>&raquo; <a href="{U_PORTAL}">{L_HOME}</a></li>
+			<li>&raquo; <a href="{U_INDEX}">{L_FORUM}</a></li>
+			<li>&raquo; <a href="{U_MEMBERLIST}">{L_MEMBERLIST}</a></li>
+			<li>&raquo; <a href="{U_FAQ}">{L_FAQ}</a></li>
+			<li>&raquo; <a href="{U_SEARCH}">{L_SEARCH}</a></li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_STATISTICS}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<li>{TOTAL_USERS}</li>
+			<li>{NEWEST_USER}</li>
+			<li>&nbsp;</li>
+			<li>{TOTAL_POSTS} {TOTAL_TOPICS}</li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_RECENT_TOPICS}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<!-- IF NO_RECENT -->
+				<li>{NO_RECENT}</li>
+			<!-- ELSE -->
+				<!-- BEGIN recent_topic_row -->
+					<li>&raquo; <a href="{recent_topic_row.U_TITLE}">{recent_topic_row.L_TITLE}</a><br />
+					{recent_topic_row.POSTED_BY}</li>
+				<!-- END recent_topic_row -->
+			<!-- ENDIF -->
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_LINKS}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<li style="text-align: center;">
+				<a href="http://www.phpbb.com"><img src="{T_THEME_PATH}/images/phpbb.gif" width="88" height="31" alt="phpBB.com" /></a>
+			</li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</div>
+
+
+<div style="width: 55%; float: {S_CONTENT_FLOW_BEGIN}; margin-{S_CONTENT_FLOW_BEGIN}: 0.5%">
+	<!-- IF SHOW_WELCOME_TEXT -->
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_WELCOME}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<li>
+				{WELCOME_MESSAGE}
+			</li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- BEGIN fetchpost_row -->
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_ANNOUNCEMENT}: {fetchpost_row.TITLE}</dt>
+					<dd>{L_POSTED}: <b>{fetchpost_row.POSTER}</b> @ {fetchpost_row.TIME}</dd>
+				</dl>
+			</li>
+		</ul>
+		<div class="post" style="background-color: #eef5f9; background-image: url('{T_THEME_PATH}/images/gradient.gif'); background-repeat: repeat-x; margin-bottom: 0px; padding: 0.05cm;">
+			<div class="inner"><span></span>
+				<div class="postbody" style="width: 100%">
+					<div class="content" style="font-family: Verdana; font-size: 10px;">{fetchpost_row.TEXT}<br /><br />
+					<!-- IF fetchpost_row.TRIMMED -->
+					[ <a href="{fetchpost_row.U_READ_FULL}">{L_READ_FULL}</a> ]<br />
+					<!-- ENDIF -->
+					{L_COMMENTS}: {fetchpost_row.REPLIES} :: <a href="{fetchpost_row.U_VIEW_COMMENTS}">{L_VIEW_COMMENTS}</a> (<a href="{fetchpost_row.U_POST_COMMENT}">{L_POST_COMMENT}</a>)</div>
+				</div>
+			<span class="corners-bottom" style="background-image: none; height: 0px;"></span></div>
+		</div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>	
+	<!-- END fetchpost_row -->
+</div>
+
+<div style="width: 22%; float: {S_CONTENT_FLOW_END};">
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_WELCOME} {U_NAME_LINK}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+				<li style="text-align: center;">{AVATAR_IMG}</li>
+				<li>{LAST_VISIT_DATE}</li>
+				<li>&nbsp;</li>
+				<li><a href="{U_SEARCH_NEW}" class="gensmall">{L_SEARCH_NEW}</a></li>
+			<!-- ENDIF -->
+			<li>{CURRENT_TIME}</li>
+			<li>&nbsp;</li>
+			<li>{S_TIMEZONE}</li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+<!-- IF not S_IS_BOT and not S_USER_LOGGED_IN -->
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_LOGIN}</dt>
+				</dl>
+			</li>
+		</ul>
+		<form method="post" action="{S_LOGIN_ACTION}">
+			<ul class="topiclist forums" style="padding: 0.05cm">
+				<li>{L_USERNAME}:</li>
+				<li><input class="inputbox autowidth" type="text" name="username" size="15" /></li>
+				<li>{L_PASSWORD}:<br /><input class="inputbox autowidth" type="password" name="password" size="15" /></li>
+				<li><input type="checkbox" name="autologin" />&nbsp;{L_REMEMBER_ME}</li>
+				<li><input type="submit" class="mainoption" name="login" value="{L_LOGIN}" /></li>
+				<li>&nbsp;</li>
+				<li><a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a></li>
+				<li>&nbsp;</li>
+				<li>{REGISTER_ACCOUNT}</li>
+				<li style="display: none"><input type="hidden" name="redirect" value="{U_PORTAL}" /></li>
+			</ul>
+		</form>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_WHO_IS_ONLINE}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<li>{TOTAL_USERS_ONLINE}</li>
+			<li>&nbsp;</li>
+			<li>{LOGGED_IN_USER_LIST}</li>
+			<li>&nbsp;</li>
+			<!-- IF U_VIEWONLINE -->
+			<li style="text-align: center;">[ <a href="{U_VIEWONLINE}">{L_VIEW_COMPLETE_LIST}</a> ]</li>
+			<li>&nbsp;</li>
+			<!-- ENDIF -->
+			<li>{RECORD_USERS}</li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_POLL}</dt>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums" style="padding: 0.05cm">
+			<li>
+				<div class="content">
+					<!-- IF S_POLL_QUESTION -->
+					<form method="post" action="{S_POLL_ACTION}">
+						<h2>{S_POLL_QUESTION}</h2>
+						<!-- IF S_CAN_VOTE --><p class="author">{L_MAX_VOTES}</p><!-- ENDIF -->
+
+						<fieldset class="polls">
+						<!-- BEGIN poll_option_row -->
+							<dl class="<!-- IF poll_option_row.OPTION_VOTED -->voted<!-- ENDIF -->"<!-- IF poll_option_row.OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
+								<dt style="width: auto;"><!-- IF S_CAN_VOTE --><label for="vote_{poll_option_row.OPTION_ID}">{poll_option_row.OPTION_TEXT}</label><!-- ELSE -->{poll_option_row.OPTION_TEXT}<!-- ENDIF --></dt>
+								<!-- IF S_CAN_VOTE --><dd style="width: auto; float: {S_CONTENT_FLOW_END};"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option_row.OPTION_ID}" value="{poll_option_row.OPTION_ID}"<!-- IF poll_option_row.OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option_row.OPTION_ID}" value="{poll_option_row.OPTION_ID}"<!-- IF poll_option_row.OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
+								<!-- IF S_DISPLAY_RESULTS --><dd style="width: auto; float: {S_CONTENT_FLOW_END};">{poll_option_row.OPTION_PERCENT}<!-- IF poll_option_row.OPTION_VOTED --><b title="{L_POLL_VOTED_OPTION}">x</b><!-- ENDIF --></dd><!-- ENDIF -->
+							</dl>
+						<!-- END poll_option_row -->
+
+						<!-- IF S_DISPLAY_RESULTS -->
+							<dl>
+								<dt>&nbsp;</dt>
+								<dd class="resultbar">{L_TOTAL_VOTES} : {TOTAL_VOTES}</dd>
+							</dl>
+						<!-- ENDIF -->
+
+						<!-- IF S_CAN_VOTE -->
+							<dl style="border-top: none;">
+								<dt>&nbsp;</dt>
+								<dd class="resultbar"><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="button1" /></dd>
+							</dl>
+						<!-- ENDIF -->
+
+						<!-- IF not S_DISPLAY_RESULTS -->
+							<dl style="border-top: none;">
+								<dt>&nbsp;</dt>
+								<dd class="resultbar"><a href="{U_VIEW_RESULTS}">{L_VIEW_RESULTS}</a></dd>
+							</dl>
+						<!-- ENDIF -->
+						{S_FORM_TOKEN}
+						</fieldset>
+					</form>
+					<!-- ELSE -->
+					{L_NO_POLL}
+					<!-- ENDIF -->
+				</div>
+			</li>
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</div>
+
+<br style="clear: both" /><br />
+
+<!-- INCLUDE overall_footer.html -->

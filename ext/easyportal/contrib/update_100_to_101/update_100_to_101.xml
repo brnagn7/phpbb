@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">easyPortal</title>
+		
+		<description lang="en">This is for updating easyPortal from 1.0.0 to 1.0.1.</description>
+		
+		<author-group>
+			<author>
+				<realname>Patrick Webster</realname>
+				<email>noxwizard@gmail.com</email>
+				<username>Noxwizard</username>
+				<homepage>http://theexiled.pwnageservers.com</homepage>
+			</author>
+		</author-group>
+		
+		<link-group>
+			<link type="template" href="subsilver2.xml" lang="en">subsilver2</link>
+		</link-group>
+		
+		<mod-version>1.0.1</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>780</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		
+		<history>
+			<entry>
+				<date>2010-12-17</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Fixed Forgot Password link</change>
+					<change>Made subsilver2 XHTML 1.0 valid</change>
+					<change>Fixed language inclusion for viewonline.php</change>
+					<change>Added form token for polls</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-16</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Fixed misnamed prosilver poll template variable</change>
+					<change>Submitted for validation</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-17</date>
+				<rev-version>0.0.3</rev-version>
+				<changelog lang="en">
+					<change>Submitted for validation</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-07</date>
+				<rev-version>0.0.2</rev-version>
+				<changelog lang="en">
+					<change>Fixed permissions problem</change>
+					<change>Added ACP page</change>
+					<change>Allowed smilies in the trimmed articles</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-08-27</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Initial Beta Release</change>
+				</changelog>
+			</entry>
+
+		</history>
+	</header>
+	
+	<action-group>
+		<open src="portal.php">
+			<edit>
+				<find>'S_LOGIN_ACTION'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),</find>
+				<action type="after-add">'U_SEND_PASSWORD' 	=> ($config['email_enable']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=sendpassword') : '',</action>
+			</edit>
+			<edit>
+				<find><![CDATA[	$template->assign_vars('welcome_text', true);]]></find>
+				<action type="replace-with"><![CDATA[	if(strlen($config['easyportal_welcome']) > 0)
+	{
+		$template->assign_var('SHOW_WELCOME_TEXT', true);
+	}]]></action>
+			</edit>
+			<edit>
+				<find>if (!empty($fetchpoll))
+{</find>
+				<action type="after-add">	add_form_key('posting');</action>
+			</edit>
+			<edit>
+				<find>$i = request_var('article', 0);</find>
+				<action type="after-add"><![CDATA[$i = ($i >= sizeof($fetchposts) || $i < 0) ? 0 : $i;]]></action>
+			</edit>
+			<edit>
+				<find>'S_POSTTIME' => $fetchtopics[$i]['topic_last_post_time']</find>
+				<action type="after-add">,
+			'POSTED_BY'		=> sprintf($user->lang['POSTED_BY_ON'], $fetchtopics[$i]['user_link'], $fetchtopics[$i]['topic_last_post_time']),</action>
+			</edit>
+		</open>
+		<open src="includes/acp/info/acp_easyportal.php">
+			<edit>
+				<find>'version'	=> '1.0.0',</find>
+				<action type="replace-with">'version'	=> '1.0.1',</action>
+			</edit>
+		</open>
+		<open src="includes/functions_portal.php">
+			<edit>
+				<find><![CDATA[WHERE topic_type <> 3]]></find>
+				<action type="replace-with"><![CDATA[WHERE topic_type <> ' . POST_GLOBAL . ']]></action>
+			</edit>
+		</open>
+		<open src="language/en/mods/easyPortal.php">
+			<edit>
+				<find>	'POST_COMMENT'				=> 'Post Comment',</find>
+				<action type="after-add">	'POSTED_BY_ON'				=> 'by %1$s on %2$s',</action>
+			</edit>
+			<edit>
+				<find><![CDATA['REGISTER_NEW_ACCOUNT'		=> 'Don\'t have an account yet?<br />You can %sregister%s for FREE',]]></find>
+				<action type="replace-with"><![CDATA['REGISTER_NEW_ACCOUNT'		=> 'Don’t have an account yet?<br />You can %sregister%s for FREE',]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/portal_body.html">
+			<edit>
+				<find><![CDATA[<div style="width: 22%; float: left;">]]></find>
+				<action type="replace-with"><![CDATA[<div style="width: 22%; float: {S_CONTENT_FLOW_BEGIN};">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[by {recent_topic_row.U_POSTER} on {recent_topic_row.S_POSTTIME}</li>]]></find>
+				<action type="replace-with"><![CDATA[{recent_topic_row.POSTED_BY}</li>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<div style="width: 55%; float: left; margin-left: 0.5%">]]></find>
+				<action type="replace-with"><![CDATA[<div style="width: 55%; float: {S_CONTENT_FLOW_BEGIN}; margin-{S_CONTENT_FLOW_BEGIN}: 0.5%">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<!-- IF welcome_text -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF SHOW_WELCOME_TEXT -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<div style="width: 22%; float: right;">]]></find>
+				<action type="replace-with"><![CDATA[<div style="width: 22%; float: {S_CONTENT_FLOW_END};">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<ul class="topiclist forums" style="padding: 0.05cm">]]></find>
+				<remove><![CDATA[<ul class="topiclist forums" style="padding: 0.05cm">]]></remove>
+			</edit>
+			<edit>
+				<find><![CDATA[<form method="post" action="{S_LOGIN_ACTION}">]]></find>
+				<action type="after-add"><![CDATA[<ul class="topiclist forums" style="padding: 0.05cm">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<input type="hidden" name="redirect" value="{U_PORTAL}" />]]></find>
+				<action type="replace-with"><![CDATA[<li style="display: none"><input type="hidden" name="redirect" value="{U_PORTAL}" /></li>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[</form>]]></find>
+				<remove><![CDATA[</form>]]></remove>
+			</edit>
+			<edit>
+				<find><![CDATA[</ul>]]></find>
+				<action type="after-add"><![CDATA[</form>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option_row.OPTION_ID}">{poll_option_row.OPTION_TEXT}</label><!-- ELSE -->{poll_option_row.OPTION_TEXT}<!-- ENDIF --></dt>
+								<!-- IF S_CAN_VOTE --><dd style="width: auto; float: right;"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option_row.OPTION_ID}" value="{poll_option_row.OPTION_ID}"<!-- IF poll_option_row.OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option_row.OPTION_ID}" value="{poll_option_row.OPTION_ID}"<!-- IF poll_option_row.OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
+								<!-- IF S_DISPLAY_RESULTS --><dd style="float: right;">{poll_option_row.OPTION_PERCENT}<!-- IF poll_option_row.OPTION_VOTED --><b title="{L_POLL_VOTED_OPTION}">x</b><!-- ENDIF --></dd><!-- ENDIF -->]]></find>
+				<action type="replace-with"><![CDATA[<dt style="width: auto;"><!-- IF S_CAN_VOTE --><label for="vote_{poll_option_row.OPTION_ID}">{poll_option_row.OPTION_TEXT}</label><!-- ELSE -->{poll_option_row.OPTION_TEXT}<!-- ENDIF --></dt>
+								<!-- IF S_CAN_VOTE --><dd style="width: auto; float: {S_CONTENT_FLOW_END};"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option_row.OPTION_ID}" value="{poll_option_row.OPTION_ID}"<!-- IF poll_option_row.OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option_row.OPTION_ID}" value="{poll_option_row.OPTION_ID}"<!-- IF poll_option_row.OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
+								<!-- IF S_DISPLAY_RESULTS --><dd style="width: auto; float: {S_CONTENT_FLOW_END};">{poll_option_row.OPTION_PERCENT}<!-- IF poll_option_row.OPTION_VOTED --><b title="{L_POLL_VOTED_OPTION}">x</b><!-- ENDIF --></dd><!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[</fieldset>]]></find>
+				<action type="before-add">{S_FORM_TOKEN}</action>
+			</edit>
+		</open>
+		<open src="viewonline.php">
+			<edit>
+				<comment lang="en">~line 22</comment>
+				<find>$user->setup('memberlist');</find>
+				<action type="after-add">$user->add_lang('mods/easyPortal');</action>
+			</edit>
+		</open>
+		<open src="web.config">
+			<edit>
+				<find><![CDATA[</security>]]></find>
+				<action type="after-add"><![CDATA[		<defaultDocument>
+			<files>
+				<remove value="portal.php" />
+				<add value="portal.php" />
+			</files>
+		</defaultDocument>]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en">Purge the cache for the changes to go into effect.
+		</diy-instructions>
+	</action-group>
+</mod>

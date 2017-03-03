@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">easyPortal</title>
+		
+		<description lang="en">This is a re-make of the 2.0.x MOD ezPortal by Smartor.</description>
+		
+		<author-notes lang="en">These are the template edits for subsilver2 that will update easyPortal from 1.0.0 to 1.0.1.</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Patrick Webster</realname>
+				<email>noxwizard@gmail.com</email>
+				<username>Noxwizard</username>
+				<homepage>http://theexiled.pwnageservers.com</homepage>
+			</author>
+		</author-group>
+
+		<link-group>
+			<link type="parent" href="update_100_to_101.xml" lang="en">Update 1.0.1 to 1.0.1</link>
+		</link-group>
+		
+		<mod-version>1.0.1</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		
+		<history>
+			<entry>
+				<date>2010-12-17</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Updated for 3.0.6+</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-17</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Submitted for validation</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-08-27</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Initial Beta Release</change>
+				</changelog>
+			</entry>
+
+		</history>
+	</header>
+	
+	<action-group>
+		<open src="styles/subsilver2/template/portal_body.html">
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left"><span class="gensmall">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}"><span class="gensmall">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[by {recent_topic_row.U_POSTER} on {recent_topic_row.S_POSTTIME}<br /><br />]]></find>
+				<action type="replace-with"><![CDATA[{recent_topic_row.POSTED_BY}<br /><br />]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<!-- IF welcome_text -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF SHOW_WELCOME_TEXT -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row2" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row2" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row3" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row3" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						<span class="gensmall">
+							<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+							<div style="text-align: center"><br />{AVATAR_IMG}</div>
+							<br />{LAST_VISIT_DATE}<br /><br />
+							<a href="{U_SEARCH_NEW}" class="gensmall">{L_SEARCH_NEW}</a><br />
+							<!-- ENDIF -->
+							<br />{CURRENT_TIME}<br /><br />{S_TIMEZONE}
+						</span>]]></find>
+				<action type="replace-with"><![CDATA[						<div>
+							<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+							<div style="text-align: center"><br />{AVATAR_IMG}</div>
+							<span class="gensmall"><br />{LAST_VISIT_DATE}<br /><br />
+							<a href="{U_SEARCH_NEW}" class="gensmall">{L_SEARCH_NEW}</a><br /></span>
+							<!-- ENDIF -->
+							<span class="gensmall"><br />{CURRENT_TIME}<br /><br />{S_TIMEZONE}</span>
+						</div>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[{REGISTER_ACCOUNT}<br />]]></find>
+				<action type="after-add"><![CDATA[								<input type="hidden" name="redirect" value="{U_PORTAL}" />]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<div align="center" class="gensmall">
+							[ <a href="{U_VIEWONLINE}">{L_VIEW_COMPLETE_LIST}</a> ]
+						</div>]]></find>
+				<action type="replace-with"><![CDATA[<!-- IF U_VIEWONLINE -->
+						<div style="text-align: center" class="gensmall">
+							[ <a href="{U_VIEWONLINE}">{L_VIEW_COMPLETE_LIST}</a> ]
+						</div>
+						<!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">
+							<div align="center" class="gensmall"><b>{S_POLL_QUESTION}</b></div><br />]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">
+							<div style="text-align: center" class="gensmall"><b>{S_POLL_QUESTION}</b></div><br />]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<td class="row1" align="left">]]></find>
+				<action type="replace-with"><![CDATA[<td class="row1" align="{S_CONTENT_FLOW_BEGIN}">]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[</form>]]></find>
+				<action type="before-add">{S_FORM_TOKEN}</action>
+			</edit>
+		</open>
+		<diy-instructions lang="en">Purge the cache for the changes to go into effect.
+		</diy-instructions>
+	</action-group>
+</mod>
