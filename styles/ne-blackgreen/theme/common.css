@@ -171,7 +171,8 @@ a:hover	{ text-decoration: underline; }
 
 .site_logo {
 	display: inline-block;
-	width: 80px;
+	background-repeat: no-repeat;
+	width: 100px;
 	height: 72px;
 }
 
