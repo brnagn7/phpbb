@@ -1,5 +1,0 @@
-<?php exit; ?>
-1487931580
-SELECT topic_title, forum_id, topic_id FROM phpbb_topics t WHERE topic_status <> 2 AND topic_visibility = 1 AND topic_type = 0 AND topic_moved_id = 0 ORDER BY topic_time DESC LIMIT 10
-843
-a:9:{i:0;a:3:{s:11:"topic_title";s:14:"Rescue Windows";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:2:"10";}i:1;a:3:{s:11:"topic_title";s:9:"Scripting";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"9";}i:2;a:3:{s:11:"topic_title";s:3:"SSH";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"8";}i:3;a:3:{s:11:"topic_title";s:10:"Monitoring";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"7";}i:4;a:3:{s:11:"topic_title";s:10:"Networking";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"6";}i:5;a:3:{s:11:"topic_title";s:7:"Backups";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"5";}i:6;a:3:{s:11:"topic_title";s:16:"Revision Control";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"4";}i:7;a:3:{s:11:"topic_title";s:10:"Grep Hacks";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"3";}i:8;a:3:{s:11:"topic_title";s:13:"Server Basics";s:8:"forum_id";s:1:"3";s:8:"topic_id";s:1:"2";}}

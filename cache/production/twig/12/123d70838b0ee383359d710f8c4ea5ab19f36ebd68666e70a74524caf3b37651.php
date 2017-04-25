@@ -1,7 +1,7 @@
 <?php
 
 /* faq_body.html */
-class __TwigTemplate_87da0a3c7cde88808f486ab09e721c1f02c999962715df6abc51849121ab02cc extends Twig_Template
+class __TwigTemplate_c285578306eddbff3cbdd97aac495ad25cef98664d1dc2e4650238e30389c276 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
